@@ -2,14 +2,14 @@
 
 Dieses Projekt dient als kleine Lernaufgabe, um:
 1. Den Umbau einer bestehenden Komponente auf das reaktive Paradigma und OnPush Change-Detection zu üben
-2. Eigene Form-Elemente mit ControlValueAccessor umsetzen zu können
-3. Benutzerdefinierte Validierung der Form umzusetzen
+2. Eigene Form-Elemente mit ControlValueAccessor-Interface (https://angular.dev/api/forms/ControlValueAccessor) umsetzen zu können
+3. Benutzerdefinierte Validierung mit Validator-Interface (https://angular.dev/api/forms/Validator) der Form umzusetzen
 
 Der Teil unter `ausganglage` soll so refactored werden, dass der Auftrag unten erfüllt ist. 
 
-## Fachlich
+## Fachliche Ausgabgslage
 
-Die Applikation enthält einen Editor für eine E-Banking Zahlung.
+Die Applikation enthält einen Dummy-Editor für eine E-Banking Zahlung.
 Der Benutzer kann folgende Daten eingeben:
 - Name
 - IBAN des Zahlungskontos
@@ -39,6 +39,12 @@ Im Menü kann zwischen den beiden Varianten für einen Vergleich umgeschaltet we
 Valide IBANs lassen sich z.B. unter http://www.randomiban.com/?country=Switzerland generieren.
 
 ## Auftrag
+
+Der Editor und der IBAN-Input sollen beide reaktiv mit OnPush Change-Detection gestaltet werden.
+Daneben soll der IBAN-Editor mit ngModel und ngModelChange funktionieren können. Dafür ist das Implementieren des ControlValueAccessor-Interface nötig.
+Zum Schluss soll die verwendete ngForm in der Lage sein, den IBAN-Editor bei Änderungen der Daten zu validieren. Dazu muss das Validator-Interface implementiert werden.
+
+Die Nachfolgenden aufzählungen dienen als optionaler Leitfaden für die Erreichung der Ziele.
 
 **Reaktiver Ansatz:**
 1. Umstellen der Komponenten auf OnPush Change-Detection
