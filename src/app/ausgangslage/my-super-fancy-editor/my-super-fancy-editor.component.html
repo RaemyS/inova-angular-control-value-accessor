@@ -1,0 +1,31 @@
+<div class="form-container">
+  <h2>Bankgedöns-Editor</h2>
+  <form #form="ngForm" (submit)="onSubmit()">
+    <div class="form-input">
+      <label for="name">Name</label>
+      <input id="name" name="name" [(ngModel)]="currentPaymentModel.name">
+    </div>
+
+    <!-- Erste Extra-Komponente für IBAN -->
+    <div class="form-input">
+      <label for="source-iban">IBAN Zahlungskonto</label>
+      <app-iban-input id="source-iban" [iban]="currentPaymentModel.sourceIban" (ibanChanged)="currentPaymentModel.sourceIban = $event"></app-iban-input>
+    </div>
+
+    <!-- Zweite Extra-Komponente für IBAN -->
+    <div class="form-input">
+      <label for="target-iban">IBAN Zahlungsempfänger</label>
+      <app-iban-input id="target-iban" [iban]="currentPaymentModel.targetIban" (ibanChanged)="currentPaymentModel.targetIban = $event"></app-iban-input>
+    </div>
+    <div>{{getTargetAccountInformation()}}</div>
+
+    <div class="form-input">
+      <label for="betrag">Betrag</label>
+      <input id="betrag" name="betrag" type="number" [(ngModel)]="currentPaymentModel.amount">
+    </div>
+
+    <button type="submit">Zahlung erfassen</button>
+    <button type="button" (click)="onResetForm()">Felder zurücksetzen</button>
+  </form>
+</div>
+

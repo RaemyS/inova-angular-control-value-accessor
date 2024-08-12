@@ -1,0 +1,13 @@
+<div>
+  <select [ngModel]="currentIbanModel.countryCode" (ngModelChange)="onCountryCodeChange($event)">
+    <option>CH</option>
+    <option>DE</option>
+    <option>AT</option>
+  </select>
+  <input [ngModel]="currentIbanModel.account" (ngModelChange)="onAccountChange($event)">
+  @if (currentIbanModel.isChecksumOk) {
+    <span>ok :)</span>
+  } @else {
+    <span>nok :(</span>
+  }
+</div>

@@ -1,0 +1,33 @@
+@if (currentPaymentModel$ | async; as currentPaymentModel) {
+  <div class="form-container">
+    <h2>Bankgedöns-Editor Final (bitte nicht ändern)</h2>
+    <form #form="ngForm" (submit)="onSubmit()">
+      <div class="form-input">
+        <label for="name">Name</label>
+        <input id="name" name="name" required [ngModel]="currentPaymentModel.name" (ngModelChange)="onNameChange($event)">
+      </div>
+
+      <!-- Erste Extra-Komponente für IBAN -->
+      <div class="form-input">
+        <label for="source-iban">IBAN Zahlungskonto</label>
+        <app-iban-input id="source-iban" name="source-iban" [ngModel]="currentPaymentModel.sourceIban" (ngModelChange)="onSourceIbanChange($event)"></app-iban-input>
+      </div>
+
+      <!-- Zweite Extra-Komponente für IBAN -->
+      <div class="form-input">
+        <label for="target-iban">IBAN Zahlungsempfänger</label>
+        <app-iban-input id="target-iban" name="target-iban" [ngModel]="currentPaymentModel.targetIban" (ngModelChange)="onTargetIbanChange($event)"></app-iban-input>
+      </div>
+      <div>{{currentTargetAccountInfo$ | async}}</div>
+
+      <div class="form-input">
+        <label for="betrag">Betrag</label>
+        <input id="betrag" name="betrag" type="number" required min="1" [ngModel]="currentPaymentModel.amount" (ngModelChange)="onAmountChange($event)">
+      </div>
+
+      <button type="submit" [disabled]="form.invalid">Zahlung erfassen</button>
+      <button type="button" (click)="onResetForm()">Felder zurücksetzen</button>
+    </form>
+  </div>
+}
+
